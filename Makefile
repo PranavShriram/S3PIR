@@ -2,7 +2,7 @@
 CXX := g++
 CXXFLAGS := -Ofast -std=c++11 -lcryptopp 
 
-TARGET := build/s3pir
+TARGET := s3pir
 INCLUDE := src/include
 
 # src files & obj files

@@ -10,8 +10,9 @@ OneSVServer::OneSVServer(uint64_t * DB_ptr, uint32_t LogN, uint32_t EntryB){
   B = EntryB / 8;
 	EntrySize = EntryB;
   DB = DB_ptr;
-	PartNum = 1 << (LogN / 2);
-	PartSize = 1 << (LogN / 2 + LogN % 2);
+	PartNum = 1 << ((LogN / 2) + 4);
+	PartSize = 1 << (LogN / 2 - 4);
+	cout<<"PartNum is "<<PartNum<<" Part size is "<<PartSize<<"\n";
 	lambda = LAMBDA;
 	M = lambda * PartSize;
   tmpEntry = new uint64_t[B];

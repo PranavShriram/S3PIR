@@ -18,8 +18,10 @@ Client<PRF>::Client(uint32_t LogN, uint32_t EntryB):
 	// B is the size of one entry in uint64s
 	B = EntryB / 8;
 
-	PartNum = 1 << (LogN / 2);
-	PartSize = 1 << (LogN / 2 + LogN % 2);
+	PartNum = 1 << ((LogN / 2) + 4);
+	PartSize = 1 << (LogN / 2 - 4);
+
+	cout<<"Number of partitions are "<<PartNum<<" size of partitions are "<<PartSize<<"\n";
 	lambda = LAMBDA;
 	M = lambda * PartSize;
 
@@ -51,6 +53,7 @@ uint16_t Client<PRF>::NextDummyIdx() {
 
 template <class PRF>
 uint64_t Client<PRF>::find_hint(uint32_t query, uint16_t queryPartNum, uint16_t queryOffset, bool &b_indicator){
+	// cout<<"The value of M is "<<M<<"\n";
 	for (uint64_t hintIndex = 0; hintIndex < M; hintIndex++){
 		if (SelectCutoff[hintIndex] == 0){ // Invalid hint
 			continue;
