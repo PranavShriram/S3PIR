@@ -18,8 +18,8 @@ Client<PRF>::Client(uint32_t LogN, uint32_t EntryB):
 	// B is the size of one entry in uint64s
 	B = EntryB / 8;
 
-	PartNum = 1 << ((LogN / 2) + 4);
-	PartSize = 1 << (LogN / 2 - 4);
+	PartNum = 1 << ((LogN / 2) + 3);
+	PartSize = 1 << (LogN / 2 - 3);
 
 	cout<<"Number of partitions are "<<PartNum<<" size of partitions are "<<PartSize<<"\n";
 	lambda = LAMBDA;

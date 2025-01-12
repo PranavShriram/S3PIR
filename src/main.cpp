@@ -87,7 +87,7 @@ void test_pir(uint64_t kLogDBSize, uint64_t kEntrySize, ofstream &output_csv)
 
 	start = chrono::high_resolution_clock::now();	
 	uint64_t *result = new uint64_t [kEntrySize/8];
-	int num_queries = 128; 	// Run PartitionSize queries, < half of backup hints
+	int num_queries = 1 << (kLogDBSize / 2 -3); 	// Run PartitionSize queries, < half of backup hints
 	cout << "Running " << num_queries << " queries" << endl;
 	int progress = 0;
 	int milestones = num_queries/5;
@@ -116,7 +116,8 @@ void test_pir(uint64_t kLogDBSize, uint64_t kEntrySize, ofstream &output_csv)
 	if (is_same<Client, TwoSVClient>::value && is_same<Server, TwoSVServer>::value) {
 		output_csv << ", -" ;
 	}  else if (is_same<Client, OneSVClient>::value && is_same<Server, OneSVServer>::value) {
-		double amortized_compute_time_per_query = ((double) offline_time.count()) / (0.5 * LAMBDA * (1 << (kLogDBSize / 2 - 4))) + online_time;
+		cout<<"herllo";
+		double amortized_compute_time_per_query = ((double) offline_time.count()) / (0.5 * LAMBDA * (1 << (kLogDBSize / 2 - 3))) + online_time;
 		cout << "Amortized compute time per query: " << amortized_compute_time_per_query  << " ms" << endl; 
 		output_csv << ", " << amortized_compute_time_per_query;
 	}
