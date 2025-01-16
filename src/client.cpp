@@ -18,8 +18,8 @@ Client<PRF>::Client(uint32_t LogN, uint32_t EntryB):
 	// B is the size of one entry in uint64s
 	B = EntryB / 8;
 
-	PartNum = 1 << (LogN / 2);
-	PartSize = 1 << (LogN / 2 + LogN % 2);
+	PartNum = 1 << (LogN / 2 + 4);
+	PartSize = 1 << (LogN / 2 - 4);
 	lambda = LAMBDA;
 	M = lambda * PartSize;
 

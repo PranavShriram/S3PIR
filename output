@@ -1,0 +1,4 @@
+Variant, Log2 DBSize, EntrySize(Bytes), NumQueries, Offline Time (s), Online Time (ms),  Amortized Compute Time Per Query (ms)
+One server, 20, 32, 64, 2.655, 0.734375, 0.799194
+One server, 20, 32, 64, 3.513, 0.8125, 2.18477
+One server, 20, 16, 64, 2.636, 0.78125, 1.81094

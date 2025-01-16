@@ -30,18 +30,18 @@ done
 function run_one_server ()
 {
   if [[ "$simulate_large_server" -eq 1 ]]; then
-    build/s3pir_simlargeserver --one-server $1 $2 $3 
+    s3pir_simlargeserver --one-server $1 $2 $3 
   else 
-    build/s3pir --one-server $1 $2 $3
+    ./s3pir --one-server $1 $2 $3
   fi
 }
 
 function run_two_server ()
 {
   if [[ "$simulate_large_server" -eq 1 ]]; then
-    build/s3pir_simlargeserver --two-server $1 $2 $3 
+    s3pir_simlargeserver --two-server $1 $2 $3 
   else 
-    build/s3pir --two-server $1 $2 $3
+    ./s3pir --two-server $1 $2 $3
   fi
 }
 
@@ -50,8 +50,6 @@ function make_exec()
   if [[ "$simulate_large_server" -eq 1 ]]; then
     echo "Simulating large server"
   fi
-  mkdir -p build
-  find build -name output.csv -delete
   make
 }
 
@@ -77,16 +75,15 @@ function large_params()
 
 function full_params()
 {
+  run_one_server 20 8 "$output_file" 
+  run_one_server 20 16 "$output_file" 
   run_one_server 20 32 "$output_file" 
+  run_one_server 24 8 "$output_file" 
+  run_one_server 24 16 "$output_file" 
   run_one_server 24 32 "$output_file" 
   run_one_server 28 8 "$output_file" 
+  run_one_server 28 16 "$output_file" 
   run_one_server 28 32 "$output_file" 
-  run_one_server 28 256 "$output_file" 
-  run_two_server 20 32 "$output_file" 
-  run_two_server 24 32 "$output_file" 
-  run_two_server 28 8 "$output_file" 
-  run_two_server 28 32 "$output_file" 
-  run_two_server 28 256 "$output_file" 
 }
 
 
