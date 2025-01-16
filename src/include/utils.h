@@ -23,7 +23,7 @@ class PRFPartitionID{
     enc_.SetKey(aesKey, aesKey.size());
   }
   void evaluate(uint8_t *out, uint32_t word1, uint32_t word2, uint32_t word3){
-    uint32_t prfIn [4] = {word1, (word3 << 16) | word2};
+    uint32_t prfIn [4] = {word1, word3, word2};
       enc_.ProcessData(out, (uint8_t*) prfIn, 16);
   }
 
